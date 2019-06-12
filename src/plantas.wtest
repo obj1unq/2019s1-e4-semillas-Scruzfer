@@ -1,0 +1,38 @@
+import plantas.*
+import parcelas.*
+
+
+describe "test de las plantas"{
+	
+	const menta = new Menta(anioDeObtencion=2007,
+							horasDeSolToleradas=12,
+							altura=0.3)
+	const hierbaBuena = new Menta(anioDeObtencion=2009,
+							horasDeSolToleradas=10,
+							altura=0.3)
+	const parcela1 = new Parcela(ancho=4,
+								 largo=4,
+								 horasDeSolPorDia=10)
+		
+	test "Menta es fuerte" {
+		assert.that(menta.esFuerte())
+	}
+
+	test "Menta NO da semillas por NO cumplir condicion de altura ni ser fuerte"{
+		menta.horasDeSolToleradas(2)
+		assert.notThat(menta.daNuevasSemillas())
+	}
+	
+	test "Espacio que ocupa la menta"{
+		assert.equals(0.9,menta.espacioQueOcupa())
+	}
+	
+	test "parcela1 es ideal para la menta"{
+		assert.that(menta.esParcelaIdeal(parcela1))
+	}
+	
+	test "Espacio que ocupa la hierbaBuena"{
+		assert.equals(0.9,hierbaBuena.espacioQueOcupa())
+	}
+	
+}
